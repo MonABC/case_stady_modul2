@@ -1,4 +1,6 @@
-package com.company;
+package com.company.model;
+
+import com.company.model.Book;
 
 import java.io.Serializable;
 

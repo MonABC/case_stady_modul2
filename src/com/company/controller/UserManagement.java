@@ -1,4 +1,9 @@
-package com.company;
+package com.company.controller;
+
+import com.company.controller.GenericManagement;
+import com.company.controller.ReadFile;
+import com.company.controller.WriteFile;
+import com.company.model.User;
 
 import java.io.*;
 import java.util.ArrayList;

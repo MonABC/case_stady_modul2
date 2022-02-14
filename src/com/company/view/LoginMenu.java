@@ -1,4 +1,7 @@
-package com.company;
+package com.company.view;
+
+import com.company.controller.UserManagement;
+import com.company.model.User;
 
 import java.util.Scanner;
 

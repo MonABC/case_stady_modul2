@@ -1,4 +1,8 @@
-package com.company;
+package com.company.view;
+
+import com.company.controller.KhachHangManagement;
+import com.company.model.Book;
+import com.company.model.KhachHang;
 
 import java.io.File;
 import java.io.IOException;

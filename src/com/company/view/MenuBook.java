@@ -1,4 +1,7 @@
-package com.company;
+package com.company.view;
+
+import com.company.controller.BookManagement;
+import com.company.model.Book;
 
 import java.io.File;
 import java.io.IOException;
@@ -185,6 +188,7 @@ public class MenuBook {
                     System.out.println("chỉnh sửa thông tin Sách");
                     System.out.println(" mời nhập vị trí cần chỉnh sửa");
                     int index = scanner.nextInt();
+                    scanner.nextLine();
                     if (index < 0 || index > bookManagement.size() - 1) {
                         System.out.println("vị trí không hợp lệ!!!");
                     } else {
@@ -299,7 +303,6 @@ public class MenuBook {
     private static Book getBook() {
 
         System.out.println("mời nhập id Sách");
-        scanner.nextLine();
         String idBook = scanner.nextLine();
         System.out.println("mời nhập tên sách: ");
         String nameBook = scanner.nextLine();
