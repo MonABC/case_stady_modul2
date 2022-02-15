@@ -10,8 +10,9 @@ import java.util.Scanner;
 
 
 public class MenuKhachHang {
-    public static Scanner scanner = new Scanner(System.in);
-
+    public  final String ANSI_RESET = "\u001B[0m";
+    public  final String ANSI_YELLOW = "\u001B[33m";
+    public Scanner scanner = new Scanner(System.in);
     public void runKhachHang() {
         KhachHangManagement khachHangManagement = new KhachHangManagement();
         int luaChon = -1;
@@ -71,19 +72,19 @@ public class MenuKhachHang {
                 case 1: {
                     System.out.println("sắp xếp theo số CMT khách hàng");// sắp xến nổi bọt
                     khachHangManagement.bubbleSort();
-                    System.out.println("--sắp xếp thành công--");
+                    System.out.println(ANSI_YELLOW +"sắp xếp thành công"+ANSI_RESET);
                     break;
                 }
                 case 2: {
                     System.out.println("sắp xếp theo tên khách hàng"); //sắp xếp chọn
                     khachHangManagement.selectionSort();
-                    System.out.println("--sắp xếp thành công--");
+                    System.out.println(ANSI_YELLOW +"sắp xếp thành công"+ANSI_RESET);
                     break;
                 }
                 case 3: {
                     System.out.println("sắp xếp theo số ngày thuê Sách của khách hàng");// sắp xếp chọn
                     khachHangManagement.insertionSort();
-                    System.out.println("--sắp xếp thành công--");
+                    System.out.println(ANSI_YELLOW +"sắp xếp thành công"+ANSI_RESET);
 
                     break;
                 }
@@ -148,7 +149,7 @@ public class MenuKhachHang {
 
                     } else {
                         khachHangManagement.deleteByIndex(index);
-                        System.out.println("xóa thành công");
+                        System.out.println(ANSI_YELLOW +"xóa thành công"+ANSI_RESET);
                     }
                     break;
                 }
@@ -157,7 +158,7 @@ public class MenuKhachHang {
                     int cmt = scanner.nextInt();
                     boolean xoaKhachHang = khachHangManagement.deleteByCmt(cmt);
                     if (xoaKhachHang) {
-                        System.out.println("xóa thành công");
+                        System.out.println(ANSI_YELLOW +"xóa thành công"+ANSI_RESET);
                     } else {
                         System.out.println("không tồn tại số CMT này");
                     }
@@ -194,7 +195,7 @@ public class MenuKhachHang {
                     if (index != -1) {
                         KhachHang khachHang = getKhachHang();
                         khachHangManagement.updateByCmt(cmt, khachHang);
-                        System.out.println("chỉnh sửa thành công");
+                        System.out.println(ANSI_YELLOW +"chỉnh sửa thành công"+ANSI_RESET);
                     } else {
                         System.out.println(" không tìm thấy CMT khách hàng");
                     }
@@ -226,7 +227,6 @@ public class MenuKhachHang {
             switch (luaChon2) {
                 case 1: {
                     System.out.println("thêm khách hàng vào cuối danh sách");
-                    System.out.println("thêm khách hàng!");
                     KhachHang khachHang = getKhachHang();
                     khachHangManagement.addNew(khachHang);
                     break;
@@ -258,7 +258,7 @@ public class MenuKhachHang {
         }
     }
 
-    private static void menuXoaKhachHang() {
+    private void menuXoaKhachHang() {
         System.out.println("--Xóa thông tin khách hàng--");
         System.out.println("1. xóa theo vị trí ");
         System.out.println("2. xóa theo số CMT");
@@ -266,7 +266,7 @@ public class MenuKhachHang {
         System.out.println("mời lựa chọn");
     }
 
-    private static void meneSapxep() {
+    private void meneSapxep() {
         System.out.println("---sắp xếp khách hàng---");
         System.out.println("1. sắp xếp theo số CMT của khách hàng");
         System.out.println("2. sắp xếp theo tên khách hàng");
@@ -275,7 +275,7 @@ public class MenuKhachHang {
         System.out.println("mời lựa chọn");
     }
 
-    private static void menuChinhSuaThongTinKhachHang() {
+    private void menuChinhSuaThongTinKhachHang() {
         System.out.println("--chỉnh sửa thông tin khách hàng--");
         System.out.println("1. chỉnh sửa thông tin khách hàng theo vị trí");
         System.out.println("2. chỉnh sửa thông tin khách hàng theo số CMT");
@@ -283,7 +283,7 @@ public class MenuKhachHang {
         System.out.println("--mời nhập lựa chọn cách chỉnh sửa--");
     }
 
-    private static KhachHang getKhachHang() {
+    private KhachHang getKhachHang() {
         System.out.println("mời nhập thông tin khách hàng");
         System.out.println("mời nhập chứng minh thư");
         int cmt = scanner.nextInt();
@@ -308,7 +308,7 @@ public class MenuKhachHang {
         return khachHang;
     }
 
-    private static void menuKhachHang() {
+    private void menuKhachHang() {
         System.out.println("---MENU KHÁCH HÀNG---");
         System.out.println("1. HIỂN THỊ DANH SÁCH KHÁCH HÀNG");
         System.out.println("2. THÊM KHÁCH HÀNG");
@@ -316,8 +316,6 @@ public class MenuKhachHang {
         System.out.println("4. XÓA KHÁCH HÀNG");
         System.out.println("5. TÌM KIẾM KHÁCH");
         System.out.println("6. SẮP XẾP KHÁCH HÀNG");
-        System.out.println("7. GHI FILE KHÁCH HÀNG");
-        System.out.println("8. ĐỌC FILE KHÁCH HÀNG");
         System.out.println("0. THOÁT KHỎI MỤC QUẢN LÍ KHÁCH HÀNG");
         System.out.println("Mời nhập lựa chọn! ");
     }

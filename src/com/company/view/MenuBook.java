@@ -8,7 +8,12 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuBook {
-    public static Scanner scanner = new Scanner(System.in);
+    public  final String ANSI_RESET = "\u001B[0m";
+    public  final String ANSI_YELLOW = "\u001B[33m";
+    public  final String ANSI_BLUE = "\u001B[34m";
+    public  final String ANSI_PURPLE = "\u001B[35m";
+    public  final String ANSI_GREEN = "\u001B[32m";
+    public Scanner scanner = new Scanner(System.in);
 
     public void runBook() {
         BookManagement bookManagement = new BookManagement();
@@ -69,19 +74,19 @@ public class MenuBook {
                 case 1: {
                     System.out.println("sắp xếp theo id của Sách");// sắp xếp nổi bọt
                     bookManagement.bubbleSort();
-                    System.out.println("xắp xếp thành công");
+                    System.out.println(ANSI_YELLOW + "xắp xếp thành công" +ANSI_RESET);
                     break;
                 }
                 case 2: {
                     System.out.println("sắp xếp chọn theo tên của Sách");// sắp xếp chọn
                     bookManagement.selectionSort();
-                    System.out.println("xắp xếp thành công");
+                    System.out.println(ANSI_YELLOW + "xắp xếp thành công" + ANSI_RESET);
                     break;
                 }
                 case 3: {
                     System.out.println("sắp xếp theo giá của Sách");//sắp xếp chèn
                     bookManagement.insertionSort();
-                    System.out.println("xắp xếp thành công");
+                    System.out.println(ANSI_YELLOW + "xắp xếp thành công"+ ANSI_RESET);
                     break;
                 }
             }
@@ -122,7 +127,7 @@ public class MenuBook {
                         System.out.println("thông tin Sách theo Id: " + id + " là: ");
                         System.out.println(bookManagement.getOb(index));
                     } else {
-                        System.out.println("không tìm thấy Id sách");
+                        System.err.println("không tìm thấy Id sách");
                     }
                     break;
                 }
@@ -136,7 +141,7 @@ public class MenuBook {
                         System.out.println("thông tin sách có tên: " + nameBook + " là: ");
                         System.out.println(bookManagement.getOb(index));
                     } else {
-                        System.out.println("không tim thấy tên Sách: " + nameBook + " trong thư viện");
+                        System.err.println("không tim thấy tên Sách: " + nameBook + " trong thư viện");
                     }
                     break;
                 }
@@ -159,9 +164,9 @@ public class MenuBook {
         String id = scanner.nextLine();
         boolean isDelete = bookManagement.deleteById(id);
         if (isDelete) {
-            System.out.println("xóa thành công");
+            System.out.println(ANSI_YELLOW +"xóa thành công"+ ANSI_RESET);
         } else {
-            System.out.println(" xóa lỗi do không có id Sách này trong thư viện");
+            System.err.println(" xóa lỗi do không có id Sách này trong thư viện");
         }
     }
 
@@ -169,10 +174,10 @@ public class MenuBook {
         System.out.println(" --nhâp vị trí Sách muốn xóa--");
         int index = scanner.nextInt();
         if (index < 0 || index > bookManagement.size()) {
-            System.out.println("vị trí không hợp lệ!!!");
+            System.err.println("vị trí không hợp lệ!!!");
         } else {
             bookManagement.deleteByIndex(index);
-            System.out.println(" xóa thành công");
+            System.out.println(ANSI_YELLOW +"xóa thành công"+ ANSI_RESET);
         }
     }
 
@@ -190,11 +195,11 @@ public class MenuBook {
                     int index = scanner.nextInt();
                     scanner.nextLine();
                     if (index < 0 || index > bookManagement.size() - 1) {
-                        System.out.println("vị trí không hợp lệ!!!");
+                        System.err.println("vị trí không hợp lệ!!!");
                     } else {
                         Book book = getBook();
                         bookManagement.updateByIndex(index, book);
-                        System.out.println("chỉnh sửa thành công");
+                        System.out.println(ANSI_YELLOW +"chỉnh sửa thành công"+ ANSI_RESET);
                     }
                     break;
                 }
@@ -207,9 +212,9 @@ public class MenuBook {
                     if (index != -1) {
                         Book book = getBook();
                         bookManagement.updateById(id, book);
-                        System.out.println("Cập nhật thành công");
+                        System.out.println(ANSI_YELLOW +"Cập nhật thành công"+ ANSI_RESET);
                     } else {
-                        System.out.println("không tìm thấy id sách!!!");
+                        System.err.println("không tìm thấy id sách!!!");
 
                     }
                     break;
@@ -225,6 +230,7 @@ public class MenuBook {
             System.out.println("thêm Sách vào thư viện");
             addBook();
             choice2 = scanner.nextInt();
+            scanner.nextLine();
             switch (choice2) {
                 case 1: {
                     System.out.println("mục thêm sách vào cuối");
@@ -237,8 +243,9 @@ public class MenuBook {
                     System.out.println(" mục thêm sách theo vị trí mong muốn");
                     System.out.println(" mời nhập vị trí mong muốn");
                     int index = scanner.nextInt();
+                    scanner.nextLine();
                     if (index < 0 || index > bookManagement.size()) {
-                        System.out.println("vị trí không hợp lệ!!!");
+                        System.err.println("vị trí không hợp lệ!!!");
                     } else {
                         Book book = getBook();
                         bookManagement.addNewByIndex(index, book);
@@ -252,7 +259,7 @@ public class MenuBook {
     private void DisplayAllBook(BookManagement bookManagement) {
         int checkSize = bookManagement.size();
         if (checkSize == 0) {
-            System.out.println("chưa có thông tin Sách");
+            System.err.println("chưa có thông tin Sách");
         } else {
             System.out.println("danh sách Sách có trong thư viện");
             bookManagement.showAll();
@@ -269,14 +276,14 @@ public class MenuBook {
         }
     }
 
-    private static void menuUpdate() {
+    private void menuUpdate() {
         System.out.println("--mời lựa chọn cách chỉnh sửa--");
         System.out.println("1. chỉnh sửa thông tin Sách theo vị trí");
         System.out.println("2. chỉnh sửa thông tin Sách theo id");
         System.out.println("0. thoát khỏi mục chỉnh sửa ");
     }
 
-    private static void munuSort() {
+    private void munuSort() {
         System.out.println("--mời lựa chọn cách sắp xếp--");
         System.out.println("1. sắp xếp theo Id Sách");
         System.out.println("2. sắp xếp theo tên Sách");
@@ -284,7 +291,7 @@ public class MenuBook {
         System.out.println("0. thoát khỏi mục sắp xếp");
     }
 
-    private static void menuDelete() {
+    private void menuDelete() {
         System.out.println("Xóa Sách");
         System.out.println("mời lựa chọn cách xóa");
         System.out.println("1. xóa theo vị trí");
@@ -293,14 +300,14 @@ public class MenuBook {
     }
 
 
-    private static void addBook() {
+    private void addBook() {
         System.out.println("mời lựa chọn cách thêm Sách vào thư viên");
         System.out.println("1. thêm Sách vào cuối");
         System.out.println("2. thêm Sách theo vị trí");
         System.out.println("0. thoát khỏi mục thêm sách");
     }
 
-    private static Book getBook() {
+    private  Book getBook() {
 
         System.out.println("mời nhập id Sách");
         String idBook = scanner.nextLine();
@@ -314,7 +321,7 @@ public class MenuBook {
         return book;
     }
 
-    private static void menu() {
+    private void menu() {
         System.out.println("---MENU---");
         System.out.println("1. HIỂN THỊ SÁCH CÓ TRONG THƯ VIỆN");
         System.out.println("2. THÊM SÁCH VÀO THƯ VIÊN");

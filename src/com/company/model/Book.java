@@ -53,8 +53,7 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Thông Tin Sách: " + idBook + ", " + nameBook + ", " + typeBook + ", " + priceBook;
-
+        return "Thông Tin Sách: id sách: " + idBook + ", "+"tên sách: " + nameBook + ", "+"loại sách: " + typeBook + ", "+"giá sách: " + priceBook;
     }
 }
 

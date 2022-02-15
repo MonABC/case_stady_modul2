@@ -64,11 +64,11 @@ public class KhachHang implements Serializable {
 
     @Override
     public String toString() {
-        return "Thông Tin Khách Hàng: " +
-                cmt +
-                ", " + tenKhachHang +
-                ", " + soNgayThue +
-                ", " + soTienTra +
+        return "Thông Tin Khách Hàng: " +"số chứng minh thư: "+
+                cmt+
+                ", "+"tên khách hàng: " + tenKhachHang +
+                ", "+"số ngày thuê: " + soNgayThue +
+                ", "+"số tiền phải trả: " + soTienTra +
                 ", " + book;
     }
 }

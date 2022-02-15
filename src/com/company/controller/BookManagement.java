@@ -59,6 +59,12 @@ public class BookManagement implements GenericManagement<Book>, WriteFile, ReadF
         }
     }
 
+//    public String toString() {
+//        Book book = String.format("%-10s %-10s %-10s %-10d",book.getIdBook(), book.getNameBook(), book.getTypeBook(), book.getPriceBook());
+//        return book;
+//    }
+    
+
     //2. thêm Sách vào thư viện
     //2.1 thêm sách vào cuối
     @Override

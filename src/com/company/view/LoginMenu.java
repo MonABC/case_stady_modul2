@@ -13,31 +13,40 @@ public class LoginMenu {
     public void runUser() {
 
         int choice = -1;
+        String test = "";
         do {
             System.out.println("1. Đăng nhập");
             System.out.println("2. Đăng kí");
             System.out.println("0. Đăng xuất ");
             System.out.println("--mời nhập lựa chọn--");
-            choice = scanner.nextInt();
+//            choice = scanner.nextInt();
+            test = scanner.nextLine();
+            try{
+                choice = Integer.parseInt(test);
+                switch (choice) {
+                    case 1: {
+                        doLogin();
+                        break;
+                    }
+                    case 2: {
 
-            switch (choice) {
-                case 1: {
-                    doLogin();
-                    break;
+                        User user = getUser();
+                        userManagement.addNew(user);
+                        break;
+                    }
+                    default: {
+                        System.err.println("xin nhập đúng các mục có trong menu!!!");
+                        break;
+                    }
                 }
-                case 2: {
-
-                    User user = getUser();
-                    userManagement.addNew(user);
-                    break;
-                }
+            }catch (NumberFormatException e){
+                System.err.println("Nhập sai định dạng!!!");
             }
         } while (choice != 0);
     }
 
     private void doLogin() {
         System.out.println("mời nhập tài khoản");
-        scanner.nextLine();
         String username = scanner.nextLine();
         System.out.println("mời nhập password");
         String passworrd = scanner.nextLine();
@@ -53,7 +62,6 @@ public class LoginMenu {
 
     private User getUser() {
         System.out.println("Đăng kí tài khoản mới");
-        scanner.nextLine();
         String username;
         do {
             System.out.println("nhập tên tài khoản (6-12 kí tự)");
